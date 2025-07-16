@@ -12,7 +12,7 @@ A modern, modular Neovim configuration focused on development productivity.
 
 ## ✨ Features
 
-- 🚀 **Fast startup** with lazy loading
+- 🚀 **Fast startup** with lazy loading and performance optimizations
 - 🔧 **Modular structure** - easy to customize and maintain
 - 💻 **Multi-language LSP support** (C/C++, Rust, Python, JS/TS, HTML, CSS, Bash, Lua, Markdown)
 - 🎯 **Intelligent completion** with nvim-cmp
@@ -22,6 +22,9 @@ A modern, modular Neovim configuration focused on development productivity.
 - 🤖 **GitHub Copilot** integration
 - 🎨 **Beautiful UI** with Dracula theme and BufferLine
 - 📋 **VSCode-like experience** with familiar keybindings
+- ⚡ **Enhanced navigation** with Flash.nvim for quick jumps
+- 🔤 **Smart text objects** with Treesitter textobjects
+- 📖 **Markdown preview** with live reload
 
 ## 📁 Structure
 
@@ -30,6 +33,7 @@ A modern, modular Neovim configuration focused on development productivity.
 ├── init.lua                        # Main entry point
 ├── lua/
 │   ├── config/                     # Core configuration
+│   │   ├── globals.lua             # Global settings & performance
 │   │   ├── options.lua             # Vim settings & options
 │   │   ├── keymaps.lua             # All keybindings
 │   │   ├── autocmds.lua            # Autocommands & custom commands
@@ -37,7 +41,7 @@ A modern, modular Neovim configuration focused on development productivity.
 │   └── plugins/                    # Plugin configurations
 │       ├── core.lua                # Essential plugins
 │       ├── lsp.lua                 # Language servers & completion
-│       ├── ui.lua                  # UI components
+│       ├── ui.lua                  # UI components & navigation
 │       ├── file-explorer.lua       # File browser
 │       └── development.lua         # Dev tools & utilities
 ```
@@ -76,6 +80,7 @@ Add plugins to the appropriate file in `lua/plugins/`:
 
 ### Modifying Settings
 
+- **Global settings** → `lua/config/globals.lua`
 - **Vim options** → `lua/config/options.lua`
 - **Keybindings** → `lua/config/keymaps.lua`
 - **Autocommands** → `lua/config/autocmds.lua`
@@ -132,6 +137,16 @@ Add plugins to the appropriate file in `lua/plugins/`:
 | `<leader>1-9` | Go to buffer 1-9 |
 | `<Alt-Left/Right>` | Switch buffers |
 
+### Enhanced Navigation
+| Key | Action |
+|-----|--------|
+| `s` | Flash jump to any location |
+| `S` | Flash jump to treesitter node |
+| `af/if` | Select function outer/inner |
+| `ac/ic` | Select class outer/inner |
+| `]m/[m` | Next/Previous function |
+| `]]/[[` | Next/Previous class |
+
 ### LSP Features
 | Key | Action |
 |-----|--------|
@@ -141,6 +156,11 @@ Add plugins to the appropriate file in `lua/plugins/`:
 | `<leader>rn` | Rename symbol |
 | `<leader>f` | Format buffer |
 | `[d/]d` | Previous/Next diagnostic |
+
+### Markdown
+| Key | Action |
+|-----|--------|
+| `<leader>mp` | Toggle markdown preview |
 
 ### Debugging
 | Key | Action |
@@ -201,6 +221,11 @@ Add plugins to the appropriate file in `lua/plugins/`:
 - **copilot.vim** - AI assistance
 - **autopairs** - Auto brackets
 - **indent-blankline** - Indent guides
+- **markdown-preview** - Live markdown preview
+
+### Navigation & Movement
+- **flash.nvim** - Enhanced jumping and navigation
+- **treesitter-textobjects** - Smart text object selection
 
 ## 🔧 Troubleshooting
 

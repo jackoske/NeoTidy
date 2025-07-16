@@ -107,13 +107,53 @@ return {
           },
         }
       })
+      
+      -- BufferLine keymaps
+      vim.keymap.set('n', '<leader>bp', ':BufferLineCyclePrev<CR>', { desc = 'Previous Buffer' })
+      vim.keymap.set('n', '<leader>bn', ':BufferLineCycleNext<CR>', { desc = 'Next Buffer' })
+      vim.keymap.set('n', '<leader>bc', ':BufferLinePickClose<CR>', { desc = 'Close Buffer (Pick)' })
+      vim.keymap.set('n', '<leader>bs', ':BufferLinePick<CR>', { desc = 'Select Buffer' })
+      vim.keymap.set('n', '<leader>bd', ':bd<CR>', { desc = 'Close current buffer' })
+      vim.keymap.set('n', '<C-w>', ':bd<CR>', { desc = 'Close current buffer (VSCode style)' })
+      vim.keymap.set('n', '<A-w>', ':bd<CR>', { desc = 'Close current buffer (Alt+W)' })
+      vim.keymap.set('n', '<leader>bD', ':bd!<CR>', { desc = 'Force close current buffer' })
+      vim.keymap.set('n', '<leader>bl', ':BufferLineMoveNext<CR>', { desc = 'Move buffer right' })
+      vim.keymap.set('n', '<leader>bh', ':BufferLineMovePrev<CR>', { desc = 'Move buffer left' })
+      vim.keymap.set('n', '<C-Tab>', ':BufferLineCycleNext<CR>', { desc = 'Next Buffer' })
+      vim.keymap.set('n', '<C-S-Tab>', ':BufferLineCyclePrev<CR>', { desc = 'Previous Buffer' })
+      vim.keymap.set('n', '<A-Left>', ':BufferLineCyclePrev<CR>', { desc = 'Previous Buffer' })
+      vim.keymap.set('n', '<A-Right>', ':BufferLineCycleNext<CR>', { desc = 'Next Buffer' })
+      vim.keymap.set('n', '<A-S-Left>', ':BufferLineMovePrev<CR>', { desc = 'Move buffer left' })
+      vim.keymap.set('n', '<A-S-Right>', ':BufferLineMoveNext<CR>', { desc = 'Move buffer right' })
+      
+      -- Quick buffer navigation
+      for i = 1, 9 do
+        vim.keymap.set('n', '<leader>' .. i, ':BufferLineGoToBuffer ' .. i .. '<CR>', { desc = 'Go to buffer ' .. i })
+      end
     end,
+  },
+
+  -- Enhanced navigation with flash.nvim
+  {
+    'folke/flash.nvim',
+    event = 'VeryLazy',
+    keys = {
+      { 's', mode = { 'n', 'x', 'o' }, function() require('flash').jump() end, desc = 'Flash' },
+      { 'S', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter() end, desc = 'Flash Treesitter' },
+      { 'r', mode = 'o', function() require('flash').remote() end, desc = 'Remote Flash' },
+      { 'R', mode = { 'o', 'x' }, function() require('flash').treesitter_search() end, desc = 'Treesitter Search' },
+      { '<c-s>', mode = { 'c' }, function() require('flash').toggle() end, desc = 'Toggle Flash Search' },
+    },
+    opts = {},
   },
 
   -- Highlight, edit, and navigate code
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
     main = 'nvim-treesitter.configs',
     opts = {
       ensure_installed = { 'bash', 'c', 'cpp', 'rust', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
@@ -123,6 +163,40 @@ return {
         additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby' } },
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ['af'] = '@function.outer',
+            ['if'] = '@function.inner',
+            ['ac'] = '@class.outer',
+            ['ic'] = '@class.inner',
+            ['aa'] = '@parameter.outer',
+            ['ia'] = '@parameter.inner',
+          },
+        },
+        move = {
+          enable = true,
+          set_jumps = true,
+          goto_next_start = {
+            [']m'] = '@function.outer',
+            [']]'] = '@class.outer',
+          },
+          goto_next_end = {
+            [']M'] = '@function.outer',
+            [']['] = '@class.outer',
+          },
+          goto_previous_start = {
+            ['[m'] = '@function.outer',
+            ['[['] = '@class.outer',
+          },
+          goto_previous_end = {
+            ['[M'] = '@function.outer',
+            ['[]'] = '@class.outer',
+          },
+        },
+      },
     },
   },
 } 

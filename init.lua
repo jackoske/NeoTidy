@@ -9,6 +9,7 @@
 -- Author: Jack Skehan
 
 -- Load configuration modules
+require('config.globals')    -- Global settings and variables
 require('config.options')    -- Vim options and settings
 require('config.keymaps')    -- Key mappings  
 require('config.autocmds')   -- Autocommands
