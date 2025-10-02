@@ -114,17 +114,25 @@ return {
       vim.keymap.set('n', '<leader>bc', ':BufferLinePickClose<CR>', { desc = 'Close Buffer (Pick)' })
       vim.keymap.set('n', '<leader>bs', ':BufferLinePick<CR>', { desc = 'Select Buffer' })
       vim.keymap.set('n', '<leader>bd', ':bd<CR>', { desc = 'Close current buffer' })
-      vim.keymap.set('n', '<C-w>', ':bd<CR>', { desc = 'Close current buffer (VSCode style)' })
-      vim.keymap.set('n', '<A-w>', ':bd<CR>', { desc = 'Close current buffer (Alt+W)' })
       vim.keymap.set('n', '<leader>bD', ':bd!<CR>', { desc = 'Force close current buffer' })
       vim.keymap.set('n', '<leader>bl', ':BufferLineMoveNext<CR>', { desc = 'Move buffer right' })
       vim.keymap.set('n', '<leader>bh', ':BufferLineMovePrev<CR>', { desc = 'Move buffer left' })
-      vim.keymap.set('n', '<C-Tab>', ':BufferLineCycleNext<CR>', { desc = 'Next Buffer' })
-      vim.keymap.set('n', '<C-S-Tab>', ':BufferLineCyclePrev<CR>', { desc = 'Previous Buffer' })
+      
+      -- Tab switching (reliable keybindings) - removed C-h/C-l to avoid conflict with window navigation
+      vim.keymap.set('n', '<C-n>', ':BufferLineCycleNext<CR>', { desc = 'Next Buffer' })
+      vim.keymap.set('n', '<C-p>', ':BufferLineCyclePrev<CR>', { desc = 'Previous Buffer' })
+      vim.keymap.set('n', 'gt', ':BufferLineCycleNext<CR>', { desc = 'Next Buffer' })
+      vim.keymap.set('n', 'gT', ':BufferLineCyclePrev<CR>', { desc = 'Previous Buffer' })
+
+      -- Alt+arrow keys for buffer navigation
       vim.keymap.set('n', '<A-Left>', ':BufferLineCyclePrev<CR>', { desc = 'Previous Buffer' })
       vim.keymap.set('n', '<A-Right>', ':BufferLineCycleNext<CR>', { desc = 'Next Buffer' })
       vim.keymap.set('n', '<A-S-Left>', ':BufferLineMovePrev<CR>', { desc = 'Move buffer left' })
       vim.keymap.set('n', '<A-S-Right>', ':BufferLineMoveNext<CR>', { desc = 'Move buffer right' })
+
+      -- Close buffer keybindings
+      vim.keymap.set('n', '<leader>x', ':bd<CR>', { desc = 'Close current buffer' })
+      vim.keymap.set('n', '<leader>X', ':bd!<CR>', { desc = 'Force close current buffer' })
       
       -- Quick buffer navigation
       for i = 1, 9 do
@@ -147,6 +155,32 @@ return {
     opts = {},
   },
 
+  -- Color preview in CSS/SCSS/HTML files
+  {
+    'NvChad/nvim-colorizer.lua',
+    event = { 'BufReadPre', 'BufNewFile' },
+    config = function()
+      require('colorizer').setup({
+        filetypes = { 'css', 'scss', 'sass', 'html', 'javascript', 'typescript', 'jsx', 'tsx', 'lua', 'vim' },
+        user_default_options = {
+          RGB = true,
+          RRGGBB = true,
+          names = true,
+          RRGGBBAA = true,
+          AARRGGBB = true,
+          rgb_fn = true,
+          hsl_fn = true,
+          css = true,
+          css_fn = true,
+          mode = 'virtualtext',
+          virtualtext = '■',
+          always_update = false
+        },
+        buftypes = {},
+      })
+    end
+  },
+
   -- Highlight, edit, and navigate code
   {
     'nvim-treesitter/nvim-treesitter',
@@ -156,7 +190,7 @@ return {
     },
     main = 'nvim-treesitter.configs',
     opts = {
-      ensure_installed = { 'bash', 'c', 'cpp', 'rust', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'cpp', 'rust', 'diff', 'html', 'css', 'scss', 'javascript', 'typescript', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
       auto_install = true,
       highlight = {
         enable = true,

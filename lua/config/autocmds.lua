@@ -87,4 +87,29 @@ vim.api.nvim_create_user_command('EditInNewBuffer', function(opts)
     -- Buffer doesn't exist, create new one
     vim.cmd('edit ' .. file)
   end
-end, { nargs = 1, complete = 'file' }) 
+end, { nargs = 1, complete = 'file' })
+
+-- Enable basic syntax highlighting for unknown file types
+vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
+  pattern = '*',
+  callback = function()
+    local ft = vim.bo.filetype
+    if ft == '' or ft == nil then
+      -- Try to detect filetype by file extension or content
+      vim.cmd('filetype detect')
+      
+      -- If still no filetype, apply basic syntax highlighting
+      if vim.bo.filetype == '' then
+        vim.cmd('set syntax=on')
+        -- Enable basic text highlighting patterns
+        vim.cmd('syntax match Comment /\\v^\\s*#.*$/')
+        vim.cmd('syntax match Comment /\\v^\\s*\\/\\/.*$/')
+        vim.cmd('syntax match Comment /\\v\\/\\*.*\\*\\//')
+        vim.cmd('syntax match String /\\v"[^"]*"/')
+        vim.cmd('syntax match String /\\v\'[^\']*\'/')
+        vim.cmd('syntax match Number /\\v<\\d+>/')
+        vim.cmd('syntax match Keyword /\\v<(function|def|class|if|else|for|while|return|import|from|var|let|const)>/')
+      end
+    end
+  end,
+}) 

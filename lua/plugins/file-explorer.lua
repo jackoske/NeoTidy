@@ -22,7 +22,10 @@ return {
             ['\\'] = 'close_window',
             ["o"] = function(state)
               local node = state.tree:get_node()
+              if not node then return end
               local path = node:get_id()
+              if not path then return end
+              
               if path:match("%.pdf$") then
                 vim.fn.jobstart({ "zathura", path }, { detach = true })
                 vim.schedule(function()
@@ -51,7 +54,10 @@ return {
             -- Add Enter key mapping for the same behavior
             ["<CR>"] = function(state)
               local node = state.tree:get_node()
+              if not node then return end
               local path = node:get_id()
+              if not path then return end
+              
               if path:match("%.pdf$") then
                 vim.fn.jobstart({ "zathura", path }, { detach = true })
                 vim.schedule(function()

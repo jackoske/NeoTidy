@@ -85,7 +85,23 @@ return {
         rust_analyzer = {},
         ts_ls = {},
         html = {},
-        cssls = {},
+        cssls = {
+          settings = {
+            css = {
+              validate = true,
+              lint = {
+                unknownAtRules = "ignore"
+              }
+            },
+            scss = {
+              validate = true,
+              lint = {
+                unknownAtRules = "ignore"
+              }
+            }
+          },
+          filetypes = { "css", "scss", "sass", "less" }
+        },
         jsonls = {},
         bashls = {},
         marksman = {}, -- Markdown LSP
@@ -163,6 +179,8 @@ return {
         javascriptreact = { "prettier" },
         typescriptreact = { "prettier" },
         css = { "prettier" },
+        scss = { "prettier" },
+        sass = { "prettier" },
         html = { "prettier" },
         json = { "prettier" },
         markdown = { "prettier" },

@@ -131,9 +131,12 @@ Add plugins to the appropriate file in `lua/plugins/`:
 ### Buffer/Tab Management
 | Key | Action |
 |-----|--------|
+| `<C-n/p>` | Next/Previous buffer |
+| `gt/gT` | Next/Previous buffer |
 | `<leader>bn/bp` | Next/Previous buffer |
+| `<leader>x` | Close buffer |
+| `<leader>X` | Force close buffer |
 | `<leader>bd` | Close buffer |
-| `<C-w>` | Close buffer (VSCode style) |
 | `<leader>1-9` | Go to buffer 1-9 |
 | `<Alt-Left/Right>` | Switch buffers |
 
