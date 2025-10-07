@@ -41,6 +41,10 @@ vim.keymap.set('n', '<leader>wv', ':vsplit<CR>', { desc = '[W]indow split [V]ert
 vim.keymap.set('n', '<leader>we', '<C-w>=', { desc = '[W]indow [E]qualize' })
 vim.keymap.set('n', '<leader>wx', ':close<CR>', { desc = '[W]indow [X]close' })
 
+-- Quickfix window commands
+vim.keymap.set('n', 'co', ':copen<CR>', { desc = '[C]quickfix [O]pen' })
+vim.keymap.set('n', 'cc', ':cclose<CR>', { desc = '[C]quickfix [C]lose' })
+
 -- [[ Telescope Keymaps ]]
 -- These are loaded after Telescope plugin is available
 local function setup_telescope_keymaps()

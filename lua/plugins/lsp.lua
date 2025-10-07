@@ -31,13 +31,15 @@ return {
           end
 
           -- LSP keymaps
-          -- Only set up Telescope-based keymaps if Telescope is available
+          -- Use native LSP for definitions/references (populates quickfix)
+          map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+          map('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
+          map('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+
+          -- Telescope-based keymaps for symbols if available
           local telescope_builtin = pcall(require, 'telescope.builtin')
           if telescope_builtin then
             local builtin = require('telescope.builtin')
-            map('gd', builtin.lsp_definitions, '[G]oto [D]efinition')
-            map('gr', builtin.lsp_references, '[G]oto [R]eferences')
-            map('gI', builtin.lsp_implementations, '[G]oto [I]mplementation')
             map('<leader>D', builtin.lsp_type_definitions, 'Type [D]efinition')
             map('<leader>ds', builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
             map('<leader>ws', builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')

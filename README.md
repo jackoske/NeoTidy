@@ -42,24 +42,47 @@ A modern, modular Neovim configuration focused on development productivity.
 │       └── development.lua         # Dev tools & utilities
 ```
 
+## 📋 Dependencies
+
+Before installing, ensure you have these dependencies installed:
+
+### Required
+- **Neovim** >= 0.9.0
+- **Git**
+- **ripgrep** - Required for Telescope live grep
+  ```bash
+  brew install ripgrep
+  ```
+
+### Recommended
+- **Node.js** - For many LSP servers
+- **Python 3** - For Python LSP support
+- **Build tools** (make, gcc) - For compiling plugins like telescope-fzf-native
+- **Nerd Font** - For icons (e.g., Hack Nerd Font, FiraCode Nerd Font)
+
 ## ⚡ Quick Start
 
-1. **Backup your existing config:**
+1. **Install dependencies:**
+   ```bash
+   brew install ripgrep neovim
+   ```
+
+2. **Backup your existing config:**
    ```bash
    mv ~/.config/nvim ~/.config/nvim.backup
    ```
 
-2. **Clone this config:**
+3. **Clone this config:**
    ```bash
    git clone git@github.com:jackoske/neotidy.git ~/.config/nvim
    ```
 
-3. **Start Neovim:**
+4. **Start Neovim:**
    ```bash
    nvim
    ```
 
-4. **Install language servers:**
+5. **Install language servers:**
    ```vim
    :Mason
    ```
@@ -133,6 +156,13 @@ Add plugins to the appropriate file in `lua/plugins/`:
 | `<leader>/` | Fuzzy find in current buffer |
 | `<leader><leader>` | Find existing buffers |
 
+### Quickfix Window
+| Key | Action |
+|-----|--------|
+| `co` | Open quickfix window |
+| `cc` | Close quickfix window |
+| `:cnext` / `:cprev` | Navigate quickfix items |
+
 ### File Management
 | Key | Action |
 |-----|--------|
@@ -152,8 +182,10 @@ Add plugins to the appropriate file in `lua/plugins/`:
 ### LSP Features
 | Key | Action |
 |-----|--------|
-| `gd` | Go to definition |
-| `gr` | Go to references |
+| `gd` | Go to definition (populates quickfix) |
+| `gr` | Go to references (populates quickfix) |
+| `gI` | Go to implementation |
+| `gD` | Go to declaration |
 | `<leader>ca` | Code actions |
 | `<leader>rn` | Rename symbol |
 | `<leader>f` | Format buffer |
