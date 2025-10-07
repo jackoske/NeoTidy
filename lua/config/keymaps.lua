@@ -110,6 +110,11 @@ vim.keymap.set('n', '<leader>bn', ':BufferLineCycleNext<CR>', { desc = 'Next Buf
 vim.keymap.set('n', '<leader>bc', ':BufferLinePickClose<CR>', { desc = 'Close Buffer (Pick)' })
 vim.keymap.set('n', '<leader>bs', ':BufferLinePick<CR>', { desc = 'Select Buffer' })
 
+-- Short buffer keybinds
+vim.keymap.set('n', '<leader>x', ':bd<CR>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>p', ':BufferLineCyclePrev<CR>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '<leader>n', ':BufferLineCycleNext<CR>', { desc = 'Next buffer' })
+
 -- Close tabs (buffers) - multiple methods
 vim.keymap.set('n', '<leader>bd', ':bd<CR>', { desc = 'Close current buffer' })
 vim.keymap.set('n', '<C-w>', ':bd<CR>', { desc = 'Close current buffer (VSCode style)' })
