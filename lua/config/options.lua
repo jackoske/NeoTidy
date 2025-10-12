@@ -65,4 +65,7 @@ vim.opt.scrolloff = 10
 vim.opt.hidden = true  -- Allow buffers to be hidden without saving
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.opt.hlsearch = true 
+vim.opt.hlsearch = true
+
+-- Suppress deprecation warnings from plugins not yet updated to nvim 0.11
+vim.deprecate = function() end 

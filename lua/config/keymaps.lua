@@ -22,6 +22,9 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- Close current window
+vim.keymap.set('n', '<leader>wc', '<C-w>c', { desc = '[W]indow [C]lose' })
+vim.keymap.set('n', '<leader>wo', '<C-w>o', { desc = '[W]indow [O]nly (close all others)' })
 
 -- [[ Terminal Mode ]]
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -38,6 +41,20 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>E", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+
+-- [[ Quickfix/Location List ]]
+-- Close quickfix and location list windows
+vim.keymap.set("n", "<leader>cc", ":cclose<CR>:lclose<CR>", { desc = "[C]lose quickfix/location list" })
+vim.keymap.set("n", "<leader>co", ":copen<CR>", { desc = "Quickfix [O]pen" })
+vim.keymap.set("n", "<leader>lo", ":lopen<CR>", { desc = "[L]ocation list [O]pen" })
+-- Navigate quickfix/location list
+vim.keymap.set("n", "[q", ":cprev<CR>", { desc = "Previous quickfix item" })
+vim.keymap.set("n", "]q", ":cnext<CR>", { desc = "Next quickfix item" })
+vim.keymap.set("n", "[l", ":lprev<CR>", { desc = "Previous location list item" })
+vim.keymap.set("n", "]l", ":lnext<CR>", { desc = "Next location list item" })
+-- More intuitive reference navigation
+vim.keymap.set("n", "<leader>n", ":cnext<CR>", { desc = "[N]ext reference/quickfix" })
+vim.keymap.set("n", "<leader>p", ":cprev<CR>", { desc = "[P]revious reference/quickfix" })
 
 -- [[ Tab Management ]]
 -- Create a new tab
