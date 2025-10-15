@@ -112,6 +112,22 @@ return {
     config = function()
       vim.g.copilot_no_tab_map = true
       vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+
+      -- Track copilot state manually (starts enabled by default)
+      local copilot_enabled = true
+
+      -- Toggle copilot on/off
+      vim.keymap.set('n', '<leader>ai', function()
+        if copilot_enabled then
+          vim.cmd('Copilot disable')
+          vim.notify('Copilot disabled', vim.log.levels.INFO)
+          copilot_enabled = false
+        else
+          vim.cmd('Copilot enable')
+          vim.notify('Copilot enabled', vim.log.levels.INFO)
+          copilot_enabled = true
+        end
+      end, { desc = '[A]I Toggle Copilot', silent = true })
     end,
   },
 

@@ -16,6 +16,7 @@ return {
 			{ "<C-e>", ":Neotree toggle<CR>", desc = "Toggle File Explorer (VSCode style)", silent = true },
 		},
 		opts = {
+			close_if_last_window = true, -- Close neo-tree if it's the last window
 			filesystem = {
 				filtered_items = {
 					visible = true,

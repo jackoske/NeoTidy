@@ -97,7 +97,7 @@ vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
     if ft == '' or ft == nil then
       -- Try to detect filetype by file extension or content
       vim.cmd('filetype detect')
-      
+
       -- If still no filetype, apply basic syntax highlighting
       if vim.bo.filetype == '' then
         vim.cmd('set syntax=on')
@@ -110,6 +110,38 @@ vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
         vim.cmd('syntax match Number /\\v<\\d+>/')
         vim.cmd('syntax match Keyword /\\v<(function|def|class|if|else|for|while|return|import|from|var|let|const)>/')
       end
+    end
+  end,
+})
+
+-- When closing a buffer, switch to another buffer instead of letting neo-tree take over
+vim.api.nvim_create_autocmd('BufDelete', {
+  callback = function(event)
+    -- Get the window that contained the deleted buffer
+    local deleted_buf = event.buf
+    local current_win = vim.api.nvim_get_current_win()
+
+    -- Find all normal buffers (not neo-tree, not special buffers)
+    local normal_buffers = {}
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+      if vim.api.nvim_buf_is_valid(buf) and
+         vim.api.nvim_buf_is_loaded(buf) and
+         buf ~= deleted_buf and
+         vim.bo[buf].buftype == '' and
+         vim.bo[buf].filetype ~= 'neo-tree' then
+        table.insert(normal_buffers, buf)
+      end
+    end
+
+    -- If there are other buffers and we're in a normal window, switch to another buffer
+    if #normal_buffers > 0 then
+      vim.schedule(function()
+        if vim.api.nvim_win_is_valid(current_win) and
+           vim.api.nvim_win_get_buf(current_win) ~= normal_buffers[1] then
+          -- Try to switch to the most recent buffer
+          pcall(vim.api.nvim_win_set_buf, current_win, normal_buffers[1])
+        end
+      end)
     end
   end,
 }) 
