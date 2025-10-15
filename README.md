@@ -124,7 +124,7 @@ Add plugins to the appropriate file in `lua/plugins/`:
 |-----|--------|
 | `<leader>sf` | Find files |
 | `<leader>sg` | Live grep |
-| `<leader>sb` | Find buffers |
+| `<leader><leader>` | Find buffers |
 | `<leader>sh` | Help tags |
 | `<leader>sk` | Keymaps |
 

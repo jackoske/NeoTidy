@@ -114,3 +114,177 @@ set relativenumber         " Relative line numbers
 | `:q!`     | Quit without saving |
 | `:e file` | Edit file           |
 | `:r file` | Read file into buffer |
+
+---
+
+# 🚀 Custom Keybindings (Your Config)
+
+## 📁 FILE EXPLORER (Neo-tree)
+
+| Key | Action |
+| --- | ------ |
+| `<leader>e` | Toggle file explorer |
+| `<C-e>` | Toggle file explorer (VSCode style) |
+| `\\` | Reveal current file in explorer |
+| `o` or `<CR>` | Open file (in Neo-tree) |
+| `P` | Toggle preview (in Neo-tree) |
+
+## 🔍 FUZZY FINDING (Telescope)
+
+| Key | Action |
+| --- | ------ |
+| `<leader>sf` | Search files |
+| `<leader>sg` | Search by grep (live grep) |
+| `<leader><leader>` | Find buffers |
+| `<leader>sh` | Search help tags |
+| `<leader>sk` | Search keymaps |
+| `<leader>sw` | Search current word |
+| `<leader>sd` | Search diagnostics |
+| `<leader>sr` | Resume last search |
+| `<leader>s.` | Search recent files |
+| `<leader>ss` | Select Telescope picker |
+| `<leader>/` | Fuzzy search in current buffer |
+| `<leader>s/` | Search in open files |
+| `<leader>sn` | Search Neovim config files |
+
+## 📊 BUFFER MANAGEMENT (BufferLine)
+
+| Key | Action |
+| --- | ------ |
+| `<C-n>` | Next buffer |
+| `<C-p>` | Previous buffer |
+| `gt` | Next buffer |
+| `gT` | Previous buffer |
+| `<A-Left>` | Previous buffer |
+| `<A-Right>` | Next buffer |
+| `<A-S-Left>` | Move buffer left |
+| `<A-S-Right>` | Move buffer right |
+| `<leader>bn` | Next buffer |
+| `<leader>bp` | Previous buffer |
+| `<leader>bd` | Close buffer |
+| `<leader>bD` | Force close buffer |
+| `<leader>x` | Close current buffer |
+| `<leader>X` | Force close current buffer |
+| `<leader>bc` | Close buffer (pick) |
+| `<leader>bs` | Select buffer (pick) |
+| `<leader>bl` | Move buffer right |
+| `<leader>bh` | Move buffer left |
+| `<leader>1-9` | Go to buffer 1-9 |
+
+## 🪟 WINDOW NAVIGATION
+
+| Key | Action |
+| --- | ------ |
+| `<C-h>` | Move to left window |
+| `<C-j>` | Move to lower window |
+| `<C-k>` | Move to upper window |
+| `<C-l>` | Move to right window |
+| `<leader>wc` | Close window |
+| `<leader>wo` | Close all other windows |
+
+## 📑 TAB MANAGEMENT
+
+| Key | Action |
+| --- | ------ |
+| `<leader>tn` | New tab |
+| `<leader>tc` | Close tab |
+| `<leader>tl` | Next tab |
+| `<leader>th` | Previous tab |
+| `<leader>tb` | Open buffer in new tab |
+| `<leader>ta` | Show all tabs |
+
+## 🎯 LSP FEATURES
+
+| Key | Action |
+| --- | ------ |
+| `gd` | Go to definition |
+| `gr` | Go to references |
+| `gI` | Go to implementation |
+| `<leader>D` | Type definition |
+| `<leader>ds` | Document symbols |
+| `<leader>ws` | Workspace symbols |
+| `<leader>rn` | Rename symbol |
+| `<leader>ca` | Code action |
+| `<leader>f` | Format buffer |
+| `K` | Hover documentation |
+| `[d` | Previous diagnostic |
+| `]d` | Next diagnostic |
+| `<leader>E` | Show diagnostic error |
+| `<leader>q` | Diagnostic quickfix list |
+
+## ⚡ FLASH NAVIGATION (Enhanced Jumping)
+
+| Key | Action |
+| --- | ------ |
+| `s` | Flash jump to any location |
+| `S` | Flash jump to treesitter node |
+| `r` | Remote flash (in operator mode) |
+| `R` | Treesitter search |
+| `<C-s>` | Toggle flash search (command mode) |
+
+## 🌳 TREESITTER TEXT OBJECTS
+
+| Key | Action |
+| --- | ------ |
+| `af` | Select outer function |
+| `if` | Select inner function |
+| `ac` | Select outer class |
+| `ic` | Select inner class |
+| `aa` | Select outer parameter |
+| `ia` | Select inner parameter |
+| `]m` | Next function start |
+| `[m` | Previous function start |
+| `]M` | Next function end |
+| `[M` | Previous function end |
+| `]]` | Next class start |
+| `[[` | Previous class start |
+| `][` | Next class end |
+| `[]` | Previous class end |
+
+## 🐛 DEBUGGING (DAP)
+
+| Key | Action |
+| --- | ------ |
+| `<F5>` | Start/Continue debugging |
+| `<F1>` | Step into |
+| `<F2>` | Step over |
+| `<F3>` | Step out |
+| `<leader>b` | Toggle breakpoint |
+| `<leader>B` | Set conditional breakpoint |
+| `<F7>` | Toggle debug UI |
+
+## 🤖 COPILOT
+
+| Key | Action |
+| --- | ------ |
+| `<C-j>` | Accept Copilot suggestion (insert mode) |
+| `<leader>ai` | Toggle Copilot on/off |
+
+## 📖 MARKDOWN
+
+| Key | Action |
+| --- | ------ |
+| `<leader>mp` | Toggle markdown preview |
+
+## 🔧 QUICKFIX & LOCATION LIST
+
+| Key | Action |
+| --- | ------ |
+| `<leader>cc` | Close quickfix/location list |
+| `<leader>co` | Open quickfix |
+| `<leader>lo` | Open location list |
+| `[q` | Previous quickfix item |
+| `]q` | Next quickfix item |
+| `[l` | Previous location item |
+| `]l` | Next location item |
+| `<leader>n` | Next reference/quickfix |
+| `<leader>p` | Previous reference/quickfix |
+
+## 🎨 GENERAL EDITING
+
+| Key | Action |
+| --- | ------ |
+| `<Esc>` | Clear search highlights |
+| `<A-j>` | Move selected lines down (visual) |
+| `<A-k>` | Move selected lines up (visual) |
+| `<Esc><Esc>` | Exit terminal mode |
